@@ -17,12 +17,20 @@ public class Proj3
 		String [] words = new String [fileLength(name)];
 		Boolean [] palindrome = new Boolean[fileLength(name)];
 		readFile(name, words);
-		//displayResults(words);
+		
 		
 		for(int i = 0; i < words.length; i++)
 		{
-			isPalindrome(words[i]);
+			palindrome[i] = isPalindrome(words[i]);
+			
 		}
+		displayResults(words, palindrome);
+		
+		File results = new File("Results.txt");
+		
+		saveLine(results, words, palindrome);
+		
+		
 	} //end main
 	
 	public static String getFileInfo() throws IOException
@@ -72,7 +80,7 @@ public class Proj3
 	
 	public static Boolean isPalindrome(String word)
 	{
-		word.toLowerCase();
+		word = word.toLowerCase();
 		StringBuilder sb = new StringBuilder(word);
 		
 		for(int i = 0; i < sb.length(); i++)
@@ -82,15 +90,44 @@ public class Proj3
 				sb.deleteCharAt(i);
 			}
 		}
-		System.out.println(sb);
-		return true;
+		word = sb.toString();
+		sb.setLength(0);
+		
+		for(int k = word.length() - 1; k >= 0; k--)
+		{
+			sb.append(word.substring(k,k+1));
+		}
+		String reverseWord = sb.toString();
+		reverseWord = reverseWord.toLowerCase();
+		
+		if(word.equals(reverseWord))
+			return true;
+		else
+			return false;
 	} //end isPalindrome
 	
-	public static void displayResults(String [] words)
+	public static void displayResults(String [] words, Boolean [] palindrome)
 	{
 		for(int i = 0; i < words.length; i++)
-			System.out.println(words[i]);
+		{
+			if(palindrome[i] == true)
+				System.out.println(words[i]+ " IS a palindrome.");
+			else
+				System.out.println(words[i] + " is NOT a palindrome.");
+		}
 	} //end displayResults
+	
+	public static void saveLine(File file, String [] words, Boolean [] palindrome) throws IOException
+	{
+		PrintWriter outFile = new PrintWriter(file);
+		
+		for(int i = 0; i < palindrome.length; i++)
+		{
+			if(palindrome[i] == true)
+				outFile.println(words[i]);
+		}
+		outFile.close();
+	} //end saveLine
 	
 	public static int fileLength(String fileName) throws IOException
 	{
