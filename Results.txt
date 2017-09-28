@@ -1,29 +1,29 @@
+A Santa at Nasa.
 Anna
-Dennis sinned.
 Bob
-Elle
-Hannah
-mom
+civic
 dad
+Dee saw a seed.
+Dennis sinned.
+Dogma, I am God
+Elle
+Flee to me, remote elf.
+Hannah
+I prefer PI.
+kayak
+level
+Ma is as selfless as I am.
+mom
+Name not one man.
+No, it is opposition.
+noon
+Otto sees Otto.
+otto, otto, otto
+Party boobytrap.
 Pot top.
 racecar
 radar
 Some men interpret nine memos.
-civic
-kayak
-otto, otto, otto
-I prefer PI.
-A Santa at Nasa.
-Dee saw a seed.
-Dogma, I am God
-Flee to me, remote elf.
-level
-Party boobytrap.
-Ma is as selfless as I am.
-Name not one man.
-noon
-No, it is opposition.
-Otto sees Otto.
 
 Input file contained a total number of 391 characters.
 Input file contained a total number of 35 lines.

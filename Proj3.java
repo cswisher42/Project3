@@ -1,10 +1,10 @@
 /** 
 *
  <Proj3.java> 
- * 
+ * Project 3
 <Chuck Swisher Scholars M W 9:30>
- * 
- * 
+ * Optional Extra Credit Inculded
+ *
 <The program revieces a potentialtext file and validates its existance. If the file is valid, it is passed to a method
  that breaks its lines into an array of strings. The individual elements of the array are then passed to a method that
  deterimes whether or not the string is a palindrome when spaces, commas, and periods are removed. Each array element is
@@ -32,6 +32,8 @@ public class Proj3
 		System.out.println();
 		readFile(name, words);
 		
+		sortArray(words);
+		
 		
 		for(int i = 0; i < words.length; i++)
 		{
@@ -42,6 +44,7 @@ public class Proj3
 		
 		File results = new File("Results.txt");
 		
+
 		saveLine(results, words, palindrome);
 		saveResults(results, words, fileLength(name));
 		
@@ -157,9 +160,9 @@ public class Proj3
 		for(int i = 0; i < words.length; i++)
 		{
 			if(palindrome[i] == true)
-				System.out.println(words[i]+ " IS a palindrome.");
+				System.out.println(words[i]+ "\t IS a palindrome.");
 			else
-				System.out.println(words[i] + " is NOT a palindrome.");
+				System.out.println(words[i] + "\t is NOT a palindrome.");
 		}
 	} //end displayResults
 	
@@ -184,32 +187,17 @@ public class Proj3
 		outFile.close();
 	} //end saveLine
 	
-	/** fileLength 
-	 * Calculates how many lines a file has to set the length of
-	 * the arrays created in the main method.
+	/** saveResults 
+	 * takes a file, array of strings, and an integer of the length of the array.
+	 * The amount of characters is counted and is writen to the file along with the
+	 * array length. Then the number of words in each line is counted and divided
+	 * by the number of lines to get the average number of words per line. That value
+	 * is then written to the file.
 	 *   
-	 * @param fileName, the file that is being read in and is having
-	 * its lines counted.
-	 * @return lines, the amount of lines in the file
+	 * @param File file, the file being written to
+	 * @param String [] words, the strings being evaluated
+	 * @param int length, the length of the array
 	 */ 
-	public static int fileLength(String fileName) throws IOException
-	{
-		File file = new File(fileName);
-		Scanner inFile = new Scanner(file);
-		
-		int lines = 0;
-		
-		while(inFile.hasNextLine())
-		{
-			lines++;
-			inFile.nextLine();
-		}
-		
-		inFile.close();
-		
-		return lines;
-	} //end fileLength
-	
 	public static void saveResults(File file, String [] words, int length) throws IOException
 	{
 		int characters = 0;
@@ -237,10 +225,90 @@ public class Proj3
 			}
 			spaces++;
 		}
-		System.out.println("spaces: " + spaces);
-		System.out.println("length: " + length);
 		pw.println("Input file contained an average of " + (double)spaces/length + " words per line.");
 		
 		pw.close();
 	} //end saveResults
+	
+	/** fileLength 
+	 * Calculates how many lines a file has to set the length of
+	 * the arrays created in the main method.
+	 *   
+	 * @param fileName, the file that is being read in and is having
+	 * its lines counted.
+	 * @return lines, the amount of lines in the file
+	 */ 
+	public static int fileLength(String fileName) throws IOException
+	{
+		File file = new File(fileName);
+		Scanner inFile = new Scanner(file);
+		
+		int lines = 0;
+		
+		while(inFile.hasNextLine())
+		{
+			lines++;
+			inFile.nextLine();
+		}
+		
+		inFile.close();
+		
+		return lines;
+	} //end fileLength
+	
+	/** sortArray 
+	 * Sorts an array of Strings in alphabetical order by converting
+	 * the first character in a String to ASCII and compaing it to
+	 * another via a bubble sort method. If the letters are matching,
+	 * the next character is compared.
+	 *   
+	 * @param String [] words, the array of Strings to be sorted
+	 */ 
+	public static void sortArray(String [] words)
+	{
+		for(int i = 0; i < words.length; i++)
+		{
+			for(int k = 0; k < words.length-1; k++)
+			{
+				if((int)words[k].toUpperCase().charAt(0) == (int)words[k+1].toUpperCase().charAt(0))
+				{
+					int count = 0;
+					while((int)words[k].toUpperCase().charAt(count) == (int)words[k+1].toUpperCase().charAt(count))
+					{
+						if(count+1 > words[k].length()-1 || count+1 > words[k+1].length()-1)
+						{
+							if(words[k].length() > words[k+1].length())
+							{
+								String temp = words[k];
+								words[k] = words[k+1];
+								words[k+1] = temp;
+								break;
+							}
+							else
+								break;
+						}
+						else
+							count++;
+					}
+					
+					if((int)words[k].toUpperCase().charAt(count) > (int)words[k+1].toUpperCase().charAt(count))
+					{
+						String temp = words[k];
+						words[k] = words[k+1];
+						words[k+1] = temp;
+					}
+				}
+				
+				else
+				{
+					if((int)words[k].toUpperCase().charAt(0) > (int)words[k+1].toUpperCase().charAt(0))
+					{
+						String temp = words[k];
+						words[k] = words[k+1];
+						words[k+1] = temp;
+					}
+				}
+			}
+		}
+	} //end sortArray
 } //end class
