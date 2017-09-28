@@ -1,8 +1,30 @@
 Anna
+Dennis sinned.
+Bob
 Elle
 Hannah
 mom
 dad
-radar
 Pot top.
-Dennis sinned.
+racecar
+radar
+Some men interpret nine memos.
+civic
+kayak
+otto, otto, otto
+I prefer PI.
+A Santa at Nasa.
+Dee saw a seed.
+Dogma, I am God
+Flee to me, remote elf.
+level
+Party boobytrap.
+Ma is as selfless as I am.
+Name not one man.
+noon
+No, it is opposition.
+Otto sees Otto.
+
+Input file contained a total number of 391 characters.
+Input file contained a total number of 35 lines.
+Input file contained an average of 2.4 words per line.
